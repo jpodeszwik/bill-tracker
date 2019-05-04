@@ -1,24 +1,19 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
-import logo from "./logo.svg";
+import {onUserChange} from "./firebase";
+import {UserInfo} from "firebase";
+import TopBar from "./TopBar";
 
 const App: React.FC = () => {
+  const [user, setUser] = useState<UserInfo | null>(null);
+
+  useEffect(() => onUserChange((user: UserInfo | null) => {
+    setUser(user);
+  }), []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo"/>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TopBar user={user}/>
     </div>
   );
 };
