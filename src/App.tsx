@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./App.css";
 import {onUserChange} from "./firebase";
 import {UserInfo} from "firebase";
-import TopBar from "./TopBar";
+import Layout from "./layout/Layout";
 
 const App: React.FC = () => {
   const [user, setUser] = useState<UserInfo | null>(null);
@@ -12,9 +12,7 @@ const App: React.FC = () => {
   }), []);
 
   return (
-    <div>
-      <TopBar user={user}/>
-    </div>
+    <Layout user={user}/>
   );
 };
 

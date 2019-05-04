@@ -1,6 +1,6 @@
 import React from 'react';
 import {UserInfo} from "firebase";
-import {logIn, logOut} from "./firebase";
+import {logIn, logOut} from "../firebase";
 
 import "./TopBar.css";
 
