@@ -12,7 +12,8 @@ const TopBar: React.FC<PropTypes> = ({user}: PropTypes) => {
   return (<div className="top-bar">
     <span>Bill tracker</span>
     <div>
-      {user && <div>{user.email}
+      {user && <div>
+        <span>{user.email}</span>
         <button onClick={logOut}>logOut</button>
       </div>}
       {!user && <button onClick={logIn}>signIn with Google</button>}
