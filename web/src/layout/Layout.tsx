@@ -11,7 +11,7 @@ const Layout: React.FC<PropTypes> = ({user}: PropTypes) => {
   return (
     <div>
       <TopBar user={user}/>
-      <Content/>
+      <Content user={user}/>
     </div>
   )
 };

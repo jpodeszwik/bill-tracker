@@ -1,5 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 
 firebase.initializeApp({
   apiKey: "AIzaSyChJiKzP2WHa3PeORhDogOEE9HxPaq6eAk",
@@ -17,3 +18,5 @@ export const auth = firebase.auth();
 export const logIn = () => auth.signInWithPopup(provider);
 export const logOut = () => auth.signOut();
 export const onUserChange = (cb: any) => auth.onAuthStateChanged(cb);
+
+export const db = firebase.firestore();

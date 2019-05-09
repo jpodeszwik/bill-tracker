@@ -1,14 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import AddActivityModal from "../activities/AddActivityModal";
+import {addActivity, listActivities} from "../activities";
+import {UserInfo} from "firebase";
 
-const Content: React.FC = () => {
+
+interface PropTypes {
+  user: UserInfo | null;
+}
+
+const Content: React.FC<PropTypes> = ({user}: PropTypes) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
+  useEffect(() => listActivities(activities => console.log(activities)), [user]);
+
   const saveActivity = (activityName: string) => {
-    console.log(activityName);
-    setModalVisible(false);
+    addActivity(activityName);
   };
 
   return (
