@@ -28,7 +28,7 @@ export const listActivities = (cb: (activities: Activity[]) => void): () => void
     .where('uid', '==', currentUser.uid)
     .onSnapshot(next => {
       const docs = next.docs;
-      const activities: Activity[] = docs.map(doc => <Activity>doc.data());
+      const activities: Activity[] = docs.map(doc => doc.data() as Activity);
       cb(activities)
     });
 };

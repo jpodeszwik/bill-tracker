@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import AddActivityModal from "../activities/AddActivityModal";
-import {addActivity, listActivities} from "../activities";
+import {Activity, addActivity, listActivities} from "../activities";
 import {UserInfo} from "firebase";
 
 
@@ -12,8 +12,9 @@ interface PropTypes {
 
 const Content: React.FC<PropTypes> = ({user}: PropTypes) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
-  useEffect(() => listActivities(activities => console.log(activities)), [user]);
+  useEffect(() => listActivities(setActivities), [user]);
 
   const saveActivity = (activityName: string) => {
     addActivity(activityName);
@@ -21,10 +22,15 @@ const Content: React.FC<PropTypes> = ({user}: PropTypes) => {
 
   return (
     <div>
-      <AddActivityModal onSave={saveActivity} onClose={() => setModalVisible(false)} visible={modalVisible}/>
+      <ul>
+        {activities.map(activity => (<li>
+          {activity.name}
+        </li>))}
+      </ul>
       <button onClick={() => setModalVisible(true)}>
         <FontAwesomeIcon icon={faPlus}/> <span>New activity</span>
       </button>
+      <AddActivityModal onSave={saveActivity} onClose={() => setModalVisible(false)} visible={modalVisible}/>
     </div>
   )
 };
