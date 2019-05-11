@@ -23,7 +23,7 @@ const Content: React.FC<PropTypes> = ({user}: PropTypes) => {
   return (
     <div>
       <ul>
-        {activities.map(activity => (<li>
+        {activities.map(activity => (<li key={activity.id}>
           {activity.name}
         </li>))}
       </ul>
