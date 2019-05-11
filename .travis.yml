@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- lts/*
+script:
+- npm --prefix web install
+- npm --prefix web build
+deploy:
+  provider: firebase
+  skip_cleanup: true
+  token:
+    secure: "$FIREBASE_SECURE_TOKEN"
+  on:
+    branch: master
+env:
+  global:
+  - secure: hplOEkAqyAdRw9W0XWxnz9kgYB1VeWkHbGYko8njwi6KHY6fhf19xzs6tYKRQ+QlSoZ/3B0HegJg7f55UFfPLO0+2XFwX40N15KopSA5NMugHJ2w5eaLW6fhgJKax3L36d8LnDfVQipeTsbwk6qdz++3G7MQWq+KMf0tnxt/h78LxjBX1ostx7WRnfRmKB+7x7DIxPXVZLfqEyvQ8m+yeuUS1S8KzqnCzHXeMV7VCfz0slSJApr9yJIxe3NLBBNgyOAh0x7COX45a+oINMBCyY6/44Tniy2qeoXN+t7gHQ2bUA2MgmTJJaREW/5Iuntb21WOJYmC+VTuIlLJi/xWbCDaXQVq7tl0xXj8fGXEfwWdkVYMmU07oIOz7R/ehbkwm63avhwZ73feH4cZ5ECgmRDbJ4CBLrnmnU9PiNO73Kv6tO5ie7EvU3vUW1ntwayX/ti+Ju3hC41h+gLavz/Ny4whqtsKm3y5sspoR8EKydV/PsgDrPk1L1BIF+4VLcaAoNrZ/HXIf8MPDUrJ9/xYQwccUV9zXLrFSBGBzzblovyk8h2EU/nwSxmPZETJ1I3QrmE2AvgwcL+tvACsyBqHry3ghiaFp62Cu314VqtfrLD63NGmVAeG2ZAt4MXHMlz5inHKj1po2xFjsCEBqjBx/53UUI3FSeqXrBRv6mSA7uw=
