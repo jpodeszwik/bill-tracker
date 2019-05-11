@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './Modal.css';
-
 interface PropTypes {
   children: any,
   visible: boolean

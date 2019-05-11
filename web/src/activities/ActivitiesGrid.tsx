@@ -1,7 +1,7 @@
 import React from "react";
-import {Activity, TO_DO, toggleStatus} from "./activities";
+import {Activity, Status, toggleStatus} from "./activities";
 import moment from 'moment';
-import './ActivitiesGrid.css';
+import ActivityIcon from "./ActivityIcon";
 
 interface PropTypes {
   activities: Activity[],
@@ -19,23 +19,25 @@ const ActivitiesGrid: React.FC<PropTypes> = ({activities}: PropTypes) => {
       <div>{currentMonth}</div>
       <div>{nextMonth}</div>
       {activities.flatMap(activity => {
-          const statuses = activity.statuses || {};
-          const prevMonthStatus = statuses[previousMonth] || TO_DO;
-          const currentMonthStatus = statuses[currentMonth] || TO_DO;
-          const nextMonthStatus = statuses[nextMonth] || TO_DO;
+        const statuses = activity.statuses || {};
+        const prevMonthStatus: Status = statuses[previousMonth] || 'TO_DO';
+        const currentMonthStatus = statuses[currentMonth] || 'TO_DO';
+        const nextMonthStatus = statuses[nextMonth] || 'TO_DO';
+        const activityId = activity.id as string;
 
-          return [
-            (<div key={activity.id}>{activity.name}</div>),
-            (<div className={`activity-${prevMonthStatus}`}
-                  onClick={() => toggleStatus(activity.id as string, previousMonth)}
-                  key={`${activity.id}-prev`}>{prevMonthStatus}</div>),
-            (<div className={`activity-${currentMonthStatus}`}
-                  onClick={() => toggleStatus(activity.id as string, currentMonth)}
-                  key={`${activity.id}-current`}>{currentMonthStatus}</div>),
-            (<div className={`activity-${nextMonthStatus}`} onClick={() => toggleStatus(activity.id as string, nextMonth)}
-                  key={`${activity.id}-next`}>{nextMonthStatus}</div>),
-          ]
-        }
+        return [
+          (<div key={activityId}>{activity.name}</div>),
+          (<ActivityIcon status={prevMonthStatus}
+                         onClick={() => toggleStatus(activityId, previousMonth)}
+                         key={`${activityId}-prev`}/>),
+          (<ActivityIcon status={currentMonthStatus}
+                         onClick={() => toggleStatus(activityId, currentMonth)}
+                         key={`${activityId}-current`}/>),
+          (<ActivityIcon status={nextMonthStatus}
+                         onClick={() => toggleStatus(activityId, nextMonth)}
+                         key={`${activityId}-next`}/>),
+        ]
+      }
       )}
     </div>
   )

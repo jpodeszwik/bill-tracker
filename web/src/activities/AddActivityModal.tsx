@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 
-import './AddActivityModal.css';
 import Modal from "./Modal";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSave, faWindowClose} from "@fortawesome/free-solid-svg-icons";
