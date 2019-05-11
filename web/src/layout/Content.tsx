@@ -8,6 +8,10 @@ interface PropTypes {
   user: UserInfo | null;
 }
 
-const Content: React.FC<PropTypes> = ({user}: PropTypes) => (<div className="content"><Activities user={user}/></div>);
+const Content: React.FC<PropTypes> = ({user}: PropTypes) => (
+  <div className="content">
+    {user && <Activities user={user}/>}
+  </div>
+);
 
 export default Content;

@@ -9,7 +9,7 @@ import "./Activities.css";
 
 
 interface PropTypes {
-  user: UserInfo | null,
+  user: UserInfo,
 }
 
 const Activities: React.FC<PropTypes> = ({user}: PropTypes) => {
