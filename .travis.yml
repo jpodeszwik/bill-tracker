@@ -3,7 +3,7 @@ node_js:
 - lts/*
 script:
 - npm --prefix web install
-- npm --prefix web build
+- npm --prefix web run build
 deploy:
   provider: firebase
   skip_cleanup: true
