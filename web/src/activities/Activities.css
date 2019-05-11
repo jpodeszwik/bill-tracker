@@ -1,0 +1,11 @@
+.activities-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.activities-container > button {
+  padding: 5px;
+  margin: 10px;
+}
