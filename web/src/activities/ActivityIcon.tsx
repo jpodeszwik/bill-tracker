@@ -22,8 +22,21 @@ const getIcon = (status: Status) => {
   }
 };
 
+const getColor = (status: Status) => {
+  switch (status) {
+    case "TO_DO":
+      return 'darkred';
+    case "DONE":
+      return 'darkgreen';
+    case "WARNING":
+      return 'darkgoldenrod';
+    default:
+      return 'black';
+  }
+};
+
 const ActivityIcon: React.FC<PropTypes> = ({status, onClick}: PropTypes) => (
-  <div title={status as string} className={`activity activity-${status}`} onClick={onClick}><FontAwesomeIcon icon={getIcon(status)}/></div>
+  <div title={status as string} onClick={onClick}><FontAwesomeIcon size={"2x"} color={getColor(status)} icon={getIcon(status)}/></div>
 );
 
 export default ActivityIcon;
