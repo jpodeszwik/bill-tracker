@@ -34,9 +34,9 @@ const Swipe: React.FC<PropTypes> = (
     }
 
     if (distance < 0) {
-      onSwipeLeft();
-    } else {
       onSwipeRight();
+    } else {
+      onSwipeLeft();
     }
   };
 
@@ -53,9 +53,9 @@ const Swipe: React.FC<PropTypes> = (
     }
 
     if (distance < 0) {
-      onSwipeLeft();
-    } else {
       onSwipeRight();
+    } else {
+      onSwipeLeft();
     }
   };
 
