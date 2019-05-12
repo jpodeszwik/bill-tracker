@@ -17,6 +17,15 @@
   grid-row-gap: 10px;
 }
 
+@media (max-width: 500px) {
+  .activities-grid {
+    grid-template-columns: repeat(3, auto) 0;
+  }
+  .activities-grid >  div:nth-child(4n) {
+    visibility: hidden;
+  }
+}
+
 .activities-grid > div {
   display: flex;
   justify-content: center;
