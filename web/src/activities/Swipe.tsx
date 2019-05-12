@@ -40,10 +40,29 @@ const Swipe: React.FC<PropTypes> = (
     }
   };
 
+  let touchX = -1;
+
+  const touchStart = (e: any) => {
+    touchX = e.changedTouches[0].pageX;
+  };
+
+  const touchEnd = (e: any) => {
+    const distance = e.changedTouches[e.changedTouches.length - 1].pageX - touchX;
+    if (Math.abs(distance) < 30) {
+      return;
+    }
+
+    if (distance < 0) {
+      onSwipeLeft();
+    } else {
+      onSwipeRight();
+    }
+  };
+
   return (
     <div
       onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseLeave={mouseUp}
-      onTouchStart={mouseDown} onTouchEnd={mouseUp}
+      onTouchStart={touchStart} onTouchEnd={touchEnd}
     >
       {children}
     </div>
