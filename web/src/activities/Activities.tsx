@@ -6,6 +6,7 @@ import AddActivityModal from "./AddActivityModal";
 import {UserInfo} from "firebase";
 import ActivitiesGrid from "./ActivitiesGrid";
 import "./Activities.css";
+import Swipe from "./Swipe";
 
 
 interface PropTypes {
@@ -15,6 +16,7 @@ interface PropTypes {
 const Activities: React.FC<PropTypes> = ({user}: PropTypes) => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [activitiesOffset, setActivitiesOffset] = useState(0);
 
   useEffect(() => listActivities(setActivities), [user]);
 
@@ -24,7 +26,10 @@ const Activities: React.FC<PropTypes> = ({user}: PropTypes) => {
 
   return (
     <div className="activities-container">
-      <ActivitiesGrid activities={activities}/>
+      <Swipe onSwipeLeft={() => setActivitiesOffset(activitiesOffset - 1)}
+             onSwipeRight={() => setActivitiesOffset(activitiesOffset + 1)}>
+        <ActivitiesGrid activities={activities} offset={activitiesOffset}/>
+      </Swipe>
       <button onClick={() => setModalVisible(true)}>
         <FontAwesomeIcon icon={faPlus}/> <span>New</span>
       </button>
